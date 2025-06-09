@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FurryFriends - Về chúng tôi</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    
+    /* Smooth scrolling */
+    html { scroll-behavior: smooth; }
+    
+    /* Mobile Menu Fixes */
+    .mobile-menu-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 40;
+      transition: opacity 0.3s ease;
+    }
+    
+    .mobile-menu-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 100vh;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 50;
+    }
+    
+    .mobile-menu-container.open {
+      transform: translateX(0);
+    }
+    
+    .mobile-menu-backdrop.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .mobile-menu-backdrop:not(.open) {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    /* Hamburger Animation */
+    .hamburger {
+      position: relative;
+      width: 24px;
+      height: 18px;
+      cursor: pointer;
+    }
+    
+    .hamburger span {
+      display: block;
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      background: #374151;
+      border-radius: 1px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+    
+    .hamburger span:nth-child(1) { top: 0px; }
+    .hamburger span:nth-child(2) { top: 8px; }
+    .hamburger span:nth-child(3) { top: 16px; }
+    
+    .hamburger.open span:nth-child(1) {
+      top: 8px;
+      transform: rotate(135deg);
+    }
+    
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+      left: -60px;
+    }
+    
+    .hamburger.open span:nth-child(3) {
+      top: 8px;
+      transform: rotate(-135deg);
+    }
+    
+    /* Enhanced Animations */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    .gradient-animated {
+      background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+    }
+    
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .animate-slideInLeft {
+      animation: slideInLeft 0.8s ease-out;
+    }
+    
+    .animate-slideInRight {
+      animation: slideInRight 0.8s ease-out;
+    }
+    
+    .animate-scaleIn {
+      animation: scaleIn 0.6s ease-out;
+    }
+    
+    .animate-pulse-custom {
+      animation: pulse 2s infinite;
+    }
+    
+    /* Glassmorphism */
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .glass-dark {
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Text gradient */
+    .text-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .text-gradient-orange {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ffa726 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 4px;
+    }
+    
+    /* Hover effects */
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .hover-glow:hover {
+      box-shadow: 0 0 30px rgba(102, 126, 234, 0.4);
+    }
+    
+    /* Statistics section */
+    .stats-number {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    
+    /* Team member cards */
+    .team-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      transition: all 0.4s ease;
+    }
+    
+    .team-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    }
+    
+    .team-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .team-card:hover::before {
+      opacity: 1;
+    }
+    
+    /* Mission section background */
+    .mission-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+    
+    /* Timeline styles */
+    .timeline-item {
+      position: relative;
+      padding-left: 3rem;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #667eea, #764ba2);
+    }
+    
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 1rem;
+      width: 14px;
+      height: 14px;
+      background: #667eea;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+    }
+    
+    /* Parallax effect */
+    .parallax {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+    
+    /* Value cards enhancement */
+    .value-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.4s ease;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 pt-16 overflow-x-hidden">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full glass z-50 transition-all duration-300">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center justify-between h-16">
+        <a href="index.html" class="text-2xl font-bold flex items-center animate-slideInLeft hover:scale-105 transition-transform duration-300">
+          <img src="https://img.upanh.tv/2025/06/08/hihihi.png" alt="FurryFriends Logo" class="h-12 mr-2 animate-float">
+          <span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">FurryFriends</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <ul class="hidden md:flex space-x-8 items-center">
+          <li><a href="index.html" class="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 hover:bg-clip-text transition-all duration-300 hover:scale-110 transform relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-600 after:to-blue-600 hover:after:w-full after:transition-all after:duration-300">Trang Chủ</a></li>
+          <li><a href="products-new.html" class="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 hover:bg-clip-text transition-all duration-300 hover:scale-110 transform relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-600 after:to-blue-600 hover:after:w-full after:transition-all after:duration-300">Danh Mục</a></li>
+          <li><a href="products.html" class="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 hover:bg-clip-text transition-all duration-300 hover:scale-110 transform relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-600 after:to-blue-600 hover:after:w-full after:transition-all after:duration-300">Sản Phẩm</a></li>
+          <li><a href="about.html" class="text-purple-600 font-semibold hover:text-transparent hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 hover:bg-clip-text transition-all duration-300 hover:scale-110 transform relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-purple-600 after:to-blue-600">Giới Thiệu</a></li>
+          <li><a href="contact.html" class="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 hover:bg-clip-text transition-all duration-300 hover:scale-110 transform relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-600 after:to-blue-600 hover:after:w-full after:transition-all after:duration-300">Liên Hệ</a></li>
+        </ul>
+
+        <!-- Action Buttons -->
+        <div class="hidden md:flex items-center space-x-4 animate-slideInRight">
+          <button id="open-login" class="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-purple-600 hover:to-blue-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover-glow">
+            Đăng Nhập / Đăng Ký
+          </button>
+          <button id="open-cart" class="relative px-6 py-2 bg-gradient-to-r from-gray-800 to-black text-white rounded-full hover:from-black hover:to-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-lg cart-badge">
+            Giỏ Hàng
+            <span class="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full px-2 py-1 animate-pulse-custom">0</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden p-2 z-50 relative" id="mobile-menu-button">
+          <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Backdrop -->
+  <div class="mobile-menu-backdrop" id="mobile-menu-backdrop"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu-container glass-dark" id="mobile-menu">
+    <div class="h-full flex flex-col">
+      <div class="p-4 border-b border-white/20">
+        <input type="text" placeholder="Tìm kiếm" class="search-input w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-white/70" />
+      </div>
+      <nav class="flex-1 px-4 py-6 space-y-4 overflow-y-auto">
+        <a href="index.html" class="block py-3 text-lg text-white/80 hover:text-white transition-all duration-300 hover:translate-x-2">Trang Chủ</a>
+        <a href="products-new.html" class="block py-3 text-lg text-white/80 hover:text-white transition-all duration-300 hover:translate-x-2">Danh Mục</a>
+        <a href="products.html" class="block py-3 text-lg text-white/80 hover:text-white transition-all duration-300 hover:translate-x-2">Sản Phẩm</a>
+        <a href="about.html" class="block py-3 text-lg text-purple-300 font-semibold">Giới Thiệu</a>
+        <a href="contact.html" class="block py-3 text-lg text-white/80 hover:text-white transition-all duration-300 hover:translate-x-2">Liên Hệ</a>
+      </nav>
+      <div class="p-4 border-t border-white/20">
+        <button id="open-login-mobile" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-purple-600 hover:to-blue-600 transition-all duration-300 hover:scale-105">Đăng Nhập / Đăng Ký</button>
+      </div>
+      <div class="p-4 border-t border-white/20">
+        <button id="open-cart-mobile" class="w-full py-3 bg-gradient-to-r from-gray-800 to-black text-white rounded-lg hover:from-black hover:to-gray-800 transition-all duration-300 hover:scale-105 cart-badge relative">
+          Giỏ Hàng
+          <span class="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full px-2">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enhanced Hero Section -->
+  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 mission-bg"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+    
+    <!-- Floating elements -->
+    <div class="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-float"></div>
+    <div class="absolute bottom-20 right-10 w-32 h-32 bg-purple-300/20 rounded-full blur-2xl animate-float" style="animation-delay: -1s;"></div>
+    <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-blue-300/20 rounded-full blur-lg animate-float" style="animation-delay: -2s;"></div>
+    
+    <div class="relative container mx-auto px-4 text-center z-10">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-6xl md:text-7xl font-bold mb-6 text-white animate-fadeInUp">
+          Về <span class="text-gradient-orange">FurryFriends</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-white/90 mb-8 animate-fadeInUp leading-relaxed" style="animation-delay: 0.2s;">
+          Đối tác tin cậy của bạn trong việc chăm sóc thú cưng từ năm 2010
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 animate-fadeInUp" style="animation-delay: 0.4s;">
+          <div class="glass-card px-6 py-3 rounded-full text-white font-semibold">
+            <i class="fas fa-heart text-pink-300 mr-2"></i>
+            15 năm kinh nghiệm
+          </div>
+          <div class="glass-card px-6 py-3 rounded-full text-white font-semibold">
+            <i class="fas fa-users text-blue-300 mr-2"></i>
+            10,000+ khách hàng hài lòng
+          </div>
+          <div class="glass-card px-6 py-3 rounded-full text-white font-semibold">
+            <i class="fas fa-award text-yellow-300 mr-2"></i>
+            Chất lượng đảm bảo 100%
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="py-16 relative">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="text-center animate-scaleIn">
+          <div class="stats-number text-gradient mb-2">15+</div>
+          <p class="text-gray-600 font-medium">Năm Kinh Nghiệm</p>
+        </div>
+        <div class="text-center animate-scaleIn" style="animation-delay: 0.1s;">
+          <div class="stats-number text-gradient mb-2">10K+</div>
+          <p class="text-gray-600 font-medium">Khách Hàng</p>
+        </div>
+        <div class="text-center animate-scaleIn" style="animation-delay: 0.2s;">
+          <div class="stats-number text-gradient mb-2">500+</div>
+          <p class="text-gray-600 font-medium">Sản Phẩm</p>
+        </div>
+        <div class="text-center animate-scaleIn" style="animation-delay: 0.3s;">
+          <div class="stats-number text-gradient mb-2">24/7</div>
+          <p class="text-gray-600 font-medium">Hỗ Trợ</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Story Section -->
+  <section class="py-20 relative">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient">Câu Chuyện Của Chúng Tôi</h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto rounded-full"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-6">
+            <div class="timeline-item">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">2010 - Khởi Đầu</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Được thành lập với tầm nhìn trở thành điểm đến tin cậy cho những người yêu thú cưng, FurryFriends bắt đầu từ một cửa hàng nhỏ với niềm đam mê lớn.
+              </p>
+            </div>
+            
+            <div class="timeline-item">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">2015 - Mở Rộng</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Mở rộng ra toàn quốc với hệ thống phân phối và dịch vụ chăm sóc khách hàng 24/7, phục vụ hàng nghìn gia đình yêu thú cưng.
+              </p>
+            </div>
+            
+            <div class="timeline-item">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">2020 - Số Hóa</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Ra mắt nền tảng online hiện đại, mang đến trải nghiệm mua sắm tiện lợi và dịch vụ tư vấn chuyên nghiệp từ xa.
+              </p>
+            </div>
+            
+            <div class="timeline-item">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">2025 - Tương Lai</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Tiếp tục đổi mới và phát triển, cam kết mang đến những sản phẩm và dịch vụ tốt nhất cho cộng đồng yêu thú cưng Việt Nam.
+              </p>
+            </div>
+          </div>
+          
+          <div class="glass-card p-8 rounded-3xl hover-lift">
+            <img src="https://images.pexels.com/photos/1139794/pexels-photo-1139794.jpeg" alt="Our Story" class="w-full h-80 object-cover rounded-2xl mb-6" />
+            <div class="text-center">
+              <h3 class="text-2xl font-bold text-gradient mb-4">Sứ Mệnh Của Chúng Tôi</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Tạo ra một thế giới nơi mọi thú cưng đều được yêu thương, chăm sóc và có một cuộc sống hạnh phúc bên cạnh gia đình của chúng.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Values Section -->
+  <section class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient">Giá Trị Cốt Lõi</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Những nguyên tắc định hướng mọi hoạt động của chúng tôi trong việc phục vụ cộng đồng yêu thú cưng
+        </p>
+        <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto rounded-full mt-6"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="value-card p-8 rounded-3xl text-center hover-lift">
+          <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full flex items-center justify-center text-3xl hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-800">Chất Lượng Hàng Đầu</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Mỗi sản phẩm đều được tuyển chọn kỹ lưỡng từ những thương hiệu uy tín nhất thế giới, đảm bảo an toàn và chất lượng tối ưu cho thú cưng của bạn.
+          </p>
+        </div>
+        
+        <div class="value-card p-8 rounded-3xl text-center hover-lift" style="animation-delay: 0.1s;">
+          <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-full flex items-center justify-center text-3xl hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-800">An Toàn Cho Thú Cưng</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Tuân thủ nghiêm ngặt các tiêu chuẩn</p>
+          </div>
+            <div class="value-card p-8 rounded-3xl text-center hover-lift" style="animation-delay: 0.2s;">
+              <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-full flex items-center justify-center text-3xl hover:scale-110 transition-transform duration-300">
+                <i class="fas fa-heartbeat"></i>
+             
+            </div>
+              <h3 class="text-2xl font-bold mb-4 text-gray-800">Yêu Thú Cưng Tận Tâm</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Chúng tôi cam kết mang đến dịch vụ chăm sóc tận tâm, giúp thú cưng của bạn luôn khỏe mạnh và hạnh phúc như chính chúng tôi muốn.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- Đội Ngũ Nhân Viên -->
+      <section class="py-20 bg-white/10 relative">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient">Đội Ngũ Chuyên Nghiệp</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto rounded-full"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Nhân viên 1 -->
+            <div class="team-card bg-white/20 p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+              <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="Chuyên viên 1" class="w-24 h-24 mx-auto rounded-full mb-4 object-cover border-4 border-white/20" />
+              <h4 class="text-xl font-semibold text-center mb-2 text-gray-800">Nguyễn Văn A</h4>
+              <p class="text-center text-gray-600">Chuyên gia chăm sóc thú cưng với hơn 10 năm kinh nghiệm, luôn tận tâm với từng khách hàng.</p>
+            </div>
+            <!-- Nhân viên 2 -->
+            <div class="team-card bg-white/20 p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+              <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg" alt="Chuyên viên 2" class="w-24 h-24 mx-auto rounded-full mb-4 object-cover border-4 border-white/20" />
+              <h4 class="text-xl font-semibold text-center mb-2 text-gray-800">Trần Thị B</h4>
+              <p class="text-center text-gray-600">Chuyên viên tư vấn và chăm sóc sức khỏe thú cưng, luôn sẵn sàng lắng nghe và giúp đỡ khách hàng.</p>
+            </div>
+            <!-- Nhân viên 3 -->
+            <div class="team-card bg-white/20 p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+              <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg" alt="Chuyên viên 3" class="w-24 h-24 mx-auto rounded-full mb-4 object-cover border-4 border-white/20" />
+              <h4 class="text-xl font-semibold text-center mb-2 text-gray-800">Phạm Thị C</h4>
+              <p class="text-center text-gray-600">Đội ngũ nhân viên nhiệt huyết, luôn sáng tạo và đặt lợi ích của thú cưng lên hàng đầu.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+
+
+  <!-- Footer -->
+  <footer class="relative py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-black"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-white">
+        <div class="md:col-span-2">
+          <div class="flex items-center mb-6">
+            <img src="https://img.upanh.tv/2025/06/08/hihihi.png" alt="FurryFriends Logo" class="h-12 mr-3">
+            <span class="text-2xl font-bold text-gradient">FurryFriends</span>
+          </div>
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            Chúng tôi cam kết mang đến những sản phẩm chất lượng cao nhất cho thú cưng của bạn. 
+            Với nhiều năm kinh nghiệm, FurryFriends là lựa chọn tin cậy của hàng nghìn gia đình.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors hover:scale-110 transform">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors hover:scale-110 transform">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors hover:scale-110 transform">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors hover:scale-110 transform">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-bold mb-6 text-gradient">Liên Kết Nhanh</h3>
+          <ul class="space-y-3">
+            <li><a href="../index.html" class="text-gray-300 hover:text-white transition-colors hover:translate-x-2 transform inline-block">Trang Chủ</a></li>
+            <li><a href="products-new.html" class="text-gray-300 hover:text-white transition-colors hover:translate-x-2 transform inline-block">Danh Mục</a></li>
+            <li><a href="products.html" class="text-gray-300 hover:text-white transition-colors hover:translate-x-2 transform inline-block">Sản Phẩm</a></li>
+            <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors hover:translate-x-2 transform inline-block">Giới Thiệu</a></li>
+            <li><a href="contact.html" class="text-gray-300 hover:text-white transition-colors hover:translate-x-2 transform inline-block">Liên Hệ</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-bold mb-6 text-gradient">Liên Hệ</h3>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <i class="fas fa-phone w-5 h-5 mr-3 text-purple-400"></i>
+              <span class="text-gray-300">+84-34984089</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-envelope w-5 h-5 mr-3 text-purple-400"></i>
+              <span class="text-gray-300">furryfriends@gmail.com</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-map-marker-alt w-5 h-5 mr-3 text-purple-400"></i>
+              <span class="text-gray-300">Hà Nội, Việt Nam</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+        <p class="text-gray-400">
+          © 2024 <span class="text-gradient font-semibold">FurryFriends</span>. Tất cả quyền được bảo lưu.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom JavaScript -->
+  <script>
+    // DOM Elements
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+    const hamburger = document.getElementById('hamburger');
+    const header = document.querySelector('header');
+    const openLoginBtn = document.getElementById('open-login');
+const openCartBtn = document.getElementById('open-cart');
+const openLoginBtnmb = document.getElementById('open-login-mobile');
+const openCartBtnmb = document.getElementById('open-cart-mobile');
+// Cart State
+let cartItems = [];
+let cartCount = 0;
+openLoginBtnmb?.addEventListener('click', () => {
+        window.location.href = 'auth.html';  // chuyển sang trang auth.html
+      });
+      
+      openCartBtnmb?.addEventListener('click', () => {
+        window.location.href = 'cart.html';  // chuyển sang trang cart.html
+      });
+    // Mobile Menu Functions
+    function toggleMobileMenu() {
+        if (!mobileMenuButton || !mobileMenu || !mobileMenuBackdrop) return;
+    
+        const isOpen = mobileMenu.classList.contains('open');
+        
+        if (!isOpen) {
+            // Open menu
+            mobileMenu.classList.add('open');
+            mobileMenuBackdrop.classList.add('open');
+            hamburger.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        } else {
+            // Close menu
+            mobileMenu.classList.remove('open');
+            mobileMenuBackdrop.classList.remove('open');
+            hamburger.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    }
+    
+    function closeMobileMenu() {
+        if (mobileMenu && mobileMenuBackdrop && hamburger) {
+            mobileMenu.classList.remove('open');
+            mobileMenuBackdrop.classList.remove('open');
+            hamburger.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    }
+    
+    function initializeMobileMenu() {
+        if (!mobileMenuButton || !mobileMenu) return;
+    
+        // Toggle menu when clicking hamburger button
+        mobileMenuButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMobileMenu();
+        });
+    
+        // Close menu when clicking backdrop
+        mobileMenuBackdrop?.addEventListener('click', closeMobileMenu);
+    
+        // Close menu when pressing Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+    
+        // Close menu when clicking a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+    }
+    
+    // Helper Functions
+    function updateCartBadge() {
+        const cartBadges = document.querySelectorAll('.cart-badge span');
+        cartBadges.forEach(badge => {
+            badge.textContent = cartCount.toString();
+        });
+    }
+    
+    function showSuccessMessage(message) {
+        const toast = document.createElement('div');
+        toast.className = 'fixed top-4 right-4 bg-black text-white px-6 py-3 rounded-lg z-50';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 2000);
+    }
+    
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize mobile menu
+        initializeMobileMenu();
+    
+        // Initialize cart badge
+        updateCartBadge();
+    
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                header?.classList.add('bg-white', 'shadow-md');
+                header?.classList.remove('glass');
+            } else {
+                header?.classList.remove('bg-white', 'shadow-md');
+                header?.classList.add('glass');
+            }
+        });
+    
+
+    
+        openLoginBtn?.addEventListener('click', () => {
+        window.location.href = 'auth.html';  // chuyển sang trang auth.html
+      });
+      
+      openCartBtn?.addEventListener('click', () => {
+        window.location.href = 'cart.html';  // chuyển sang trang cart.html
+      });
+    });
+      </script>
+</body>
+</html>
