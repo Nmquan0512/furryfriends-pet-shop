@@ -1,84 +1,95 @@
+🐾 FurryFriends - Cửa Hàng Thú Cưng
+FurryFriends là một cửa hàng thú cưng trực tuyến hiện đại, cung cấp đa dạng các sản phẩm chất lượng cao dành cho những người bạn lông xù của bạn.
 
+🔍 Tổng quan dự án
+Dự án FurryFriends là một website tương tác, thân thiện với người dùng, dành riêng cho cộng đồng yêu thú cưng tại Việt Nam. Trang web cung cấp các chức năng cần thiết như:
 
-# FurryFriends - Cửa Hàng Thú Cưng
+Duyệt sản phẩm
 
-FurryFriends is a modern online pet shop offering a wide range of high-quality products for your furry friends.
+Xem chi tiết
 
-## Project Overview
+Thêm sản phẩm vào giỏ hàng
 
-The FurryFriends project serves as an interactive and user-friendly website dedicated to pet lovers in Vietnam. It provides essential functionalities for browsing products, viewing details, adding items to a cart, and user authentication. The website is built using HTML, CSS, and JavaScript with a responsive design ensuring compatibility across devices.
+Đăng nhập và đăng ký người dùng
 
-## Installation
+Trang web được xây dựng bằng HTML, CSS và JavaScript, có thiết kế responsive đảm bảo tương thích trên nhiều thiết bị.
 
-To set up the FurryFriends project locally, follow these steps:
+⚙️ Cài đặt
+Để thiết lập và chạy dự án FurryFriends trên máy tính cá nhân, bạn làm theo các bước sau:
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/Nmquan0512/furryfriends.git
-   ```
-2. **Navigate to the project directory:**
-   ```bash
-   cd furryfriends
-   ```
-3. **Open the `index.html` file in your browser:**
-   Just double-click the `index.html` file, or you may use a local server for better performance.
+Clone repository về máy:
 
-## Usage
+bash
+Sao chép
+Chỉnh sửa
+git clone https://github.com/Nmquan0512/furryfriends-pet-shop.git
+Di chuyển vào thư mục dự án:
 
-1. Navigate through the website to explore various pet products.
-2. Use the mobile-friendly navigation menu for better accessibility on smaller devices.
-3. Click on a product to view more details and add it to the shopping cart.
-4. The shopping cart allows you to view selected items, modify quantities, and proceed to checkout.
-5. Users can log in or register through the provided forms for a personalized experience.
+bash
+Sao chép
+Chỉnh sửa
+cd furryfriends
+Mở file index.html trong trình duyệt:
 
-## Features
+Bạn có thể nhấp đôi chuột vào file index.html để mở.
 
-- **Responsive Design:** Adapts seamlessly to various screen sizes.
-- **User Authentication:** Login and registration functionality for a personalized shopping experience.
-- **Dynamic Product Listings:** View and filter different categories of pet products.
-- **Shopping Cart:** Easily manage products before payment.
-- **Interactive User Interface:** Smooth animations and transition effects enhance user experience.
+Hoặc chạy bằng máy chủ cục bộ (local server) để có hiệu suất tốt hơn.
 
-## Dependencies
+🧭 Cách sử dụng
+Duyệt các sản phẩm thú cưng trên website.
 
-The project currently uses the following dependencies, as specified in the `package.json` file:
+Sử dụng menu điều hướng thân thiện với thiết bị di động để dễ thao tác trên màn hình nhỏ.
 
-- **Tailwind CSS:** A utility-first CSS framework for rapid UI development.
-- **Font Awesome:** Icons for better visual aesthetics.
-- **Google Fonts:** Custom fonts for improved typography.
+Nhấp vào sản phẩm để xem chi tiết và thêm vào giỏ hàng.
 
-## Project Structure
+Trong giỏ hàng, bạn có thể xem các sản phẩm đã chọn, thay đổi số lượng và tiến hành thanh toán.
 
-```plaintext
+Người dùng có thể đăng nhập hoặc đăng ký tài khoản để có trải nghiệm cá nhân hóa.
+
+🌟 Tính năng nổi bật
+Thiết kế responsive: Tự động thích ứng với mọi kích thước màn hình.
+
+Xác thực người dùng: Chức năng đăng nhập/đăng ký cho trải nghiệm mua sắm cá nhân hóa.
+
+Danh sách sản phẩm động: Xem và lọc theo nhiều danh mục sản phẩm thú cưng.
+
+Giỏ hàng: Quản lý dễ dàng sản phẩm trước khi thanh toán.
+
+Giao diện tương tác: Hiệu ứng chuyển động mượt mà, nâng cao trải nghiệm người dùng.
+
+🧩 Các thư viện sử dụng
+Dự án hiện sử dụng các thư viện sau (có thể được chỉ định trong package.json):
+
+Tailwind CSS: Framework CSS utility-first để phát triển giao diện nhanh chóng.
+
+Font Awesome: Bộ icon hỗ trợ hiển thị đẹp mắt.
+
+Google Fonts: Phông chữ tùy chỉnh cho kiểu chữ đẹp hơn.
+
+📁 Cấu trúc dự án
+css
+Sao chép
+Chỉnh sửa
 furryfriends/
 │
-├── index.html               # Main page with navigation and product display
-├── auth.html                # User authentication page (login/register)
-├── products-new.html        # Page for new products
-├── product-details.html      # Detailed view of a single product
-├── about.html               # Information about the company
-├── contact.html             # Contact page with contact form and company details
-├── cart.html                # Shopping cart page
+├── index.html               # Trang chính (danh mục và điều hướng)
+├── auth.html                # Trang đăng nhập / đăng ký
+├── products-new.html        # Trang sản phẩm mới
+├── product-details.html     # Trang chi tiết sản phẩm
+├── about.html               # Giới thiệu về cửa hàng
+├── contact.html             # Trang liên hệ (form và thông tin)
+├── cart.html                # Trang giỏ hàng
 │
-├── css/                     # Custom stylesheets (if any)
-│
-└── js/                      # Custom JavaScript files (if any)
-```
+├── css/                     # Thư mục chứa CSS tuỳ chỉnh (nếu có)
+├── js/                      # Thư mục chứa file JavaScript (nếu có)
+🤝 Đóng góp
+Bạn có thể đóng góp bằng cách gửi pull request và giúp cải thiện mã nguồn của dự án.
 
-## Contributing
+📜 Giấy phép
+Dự án này được phát hành theo giấy phép MIT License.
 
-Feel free to contribute by submitting a pull request and improving the codebase further!
+📬 Liên hệ
+Email: quannmph49021@gmail.com
 
-## License
+Điện thoại: +84-968596808
 
-This project is licensed under the MIT License.
-
-## Contact
-
-For any inquiries, you can reach out via:
-- **Email:** furryfriends@gmail.com
-- **Phone:** +84-34984089
-
----
-
-Thank you for considering the FurryFriends project! Enjoy browsing our pet products and enhancing the lives of your furry friends!
