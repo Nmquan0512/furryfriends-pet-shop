@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FurryFriends - Sản Phẩm</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    /* Smooth scrolling */
+    html { scroll-behavior: smooth; }
+    
+    /* Gradient animations */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .gradient-animated {
+      background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+    }
+    
+    /* Glassmorphism */
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .glass-dark {
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Text gradient */
+    .text-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 4px;
+    }
+            /* Mobile Menu Fixes */
+            .mobile-menu-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 40;
+      transition: opacity 0.3s ease;
+    }
+    
+    .mobile-menu-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 100vh;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 50;
+    }
+    
+    .mobile-menu-container.open {
+      transform: translateX(0);
+    }
+    
+    .mobile-menu-backdrop.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .mobile-menu-backdrop:not(.open) {
+      opacity: 0;
+      pointer-events: none;
+    }
+   /* Hamburger Animation */
+   .hamburger {
+      position: relative;
+      width: 24px;
+      height: 18px;
+      cursor: pointer;
+    }
+    
+    .hamburger span {
+      display: block;
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      background: #374151;
+      border-radius: 1px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+    
+    .hamburger span:nth-child(1) {
+      top: 0px;
+    }
+    
+    .hamburger span:nth-child(2) {
+      top: 8px;
+    }
+    
+    .hamburger span:nth-child(3) {
+      top: 16px;
+    }
+    
+    .hamburger.open span:nth-child(1) {
+      top: 8px;
+      transform: rotate(135deg);
+    }
+    
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+      left: -60px;
+    }
+    
+    .hamburger.open span:nth-child(3) {
+      top: 8px;
+      transform: rotate(-135deg);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 pt-16 overflow-x-hidden">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full glass z-50 transition-all duration-300">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center justify-between h-16">
+        <a href="index.html" class="text-2xl font-bold flex items-center animate-slideInLeft hover:scale-105 transition-transform duration-300">
+          <img src="https://img.upanh.tv/2025/06/08/hihihi.png" alt="FurryFriends Logo" class="h-12 mr-2 animate-float">
+          <span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">FurryFriends</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <ul class="hidden md:flex space-x-8 items-center">
+          <li><a href="index.html" class="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 hover:bg-clip-text transition-all duration-300 hover:scale-110 transform relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-600 after:to-blue-600 hover:after:w-full after:transition-all after:duration-300">Trang Chủ</a></li>
+          <li><a href="products-new.html" class="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 hover:bg-clip-text transition-all duration-300 hover:scale-110 transform relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-600 after:to-blue-600 hover:after:w-full after:transition-all after:duration-300">Danh Mục</a></li>
+          <li><a href="products.html" class="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 hover:bg-clip-text transition-all duration-300 hover:scale-110 transform relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-600 after:to-blue-600 hover:after:w-full after:transition-all after:duration-300">Sản Phẩm</a></li>
+          <li><a href="about.html" class="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 hover:bg-clip-text transition-all duration-300 hover:scale-110 transform relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-600 after:to-blue-600 hover:after:w-full after:transition-all after:duration-300">Giới Thiệu</a></li>
+          <li><a href="contact.html" class="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 hover:bg-clip-text transition-all duration-300 hover:scale-110 transform relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-600 after:to-blue-600 hover:after:w-full after:transition-all after:duration-300">Liên Hệ</a></li>
+        </ul>
+
+        <!-- Action Buttons -->
+        <div class="hidden md:flex items-center space-x-4 animate-slideInRight">
+          <button id="open-login" class="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-purple-600 hover:to-blue-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover-glow">
+            Đăng Nhập / Đăng Ký
+          </button>
+          <button id="open-cart" class="relative px-6 py-2 bg-gradient-to-r from-gray-800 to-black text-white rounded-full hover:from-black hover:to-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-lg cart-badge">
+            Giỏ Hàng
+            <span class="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full px-2 py-1 animate-pulse-custom">0</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden p-2 z-50 relative" id="mobile-menu-button">
+          <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Backdrop -->
+  <div class="mobile-menu-backdrop" id="mobile-menu-backdrop"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu-container glass-dark" id="mobile-menu">
+    <div class="h-full flex flex-col">
+      <div class="p-4 border-b border-white/20">
+        <input type="text" placeholder="Tìm kiếm" class="search-input w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-white/70" />
+      </div>
+      <nav class="flex-1 px-4 py-6 space-y-4 overflow-y-auto">
+        <a href="index.html" class="block py-3 text-lg text-white/80 hover:text-white transition-all duration-300 hover:translate-x-2">Trang Chủ</a>
+        <a href="products-new.html" class="block py-3 text-lg text-white/80 hover:text-white transition-all duration-300 hover:translate-x-2">Danh Mục</a>
+        <a href="products.html" class="block py-3 text-lg text-white/80 hover:text-white transition-all duration-300 hover:translate-x-2">Sản Phẩm</a>
+        <a href="about.html" class="block py-3 text-lg text-white/80 hover:text-white transition-all duration-300 hover:translate-x-2">Giới Thiệu</a>
+        <a href="contact.html" class="block py-3 text-lg text-white/80 hover:text-white transition-all duration-300 hover:translate-x-2">Liên Hệ</a>
+      </nav>
+      <div class="p-4 border-t border-white/20">
+        <button id="open-login-mobile" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-purple-600 hover:to-blue-600 transition-all duration-300 hover:scale-105">Đăng Nhập / Đăng Ký</button>
+      </div>
+      <div class="p-4 border-t border-white/20">
+        <button id="open-cart-mobile" class="w-full py-3 bg-gradient-to-r from-gray-800 to-black text-white rounded-lg hover:from-black hover:to-gray-800 transition-all duration-300 hover:scale-105 cart-badge relative">
+          Giỏ Hàng
+          <span class="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full px-2">0</span>
+        </button>
+      </div>
+    </div>
+  </div>  <!-- Products Hero Section -->
+  <section class="relative min-h-[400px] bg-cover bg-center bg-fixed" style="background-image: url('https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg');">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40"></div>
+    <div class="relative container mx-auto px-4 flex items-center justify-center h-full py-20">
+      <div class="text-center text-white">
+        <h1 class="text-5xl font-bold mb-6 animate-fade-in">Sản Phẩm Của Chúng Tôi</h1>
+        <p class="text-xl max-w-2xl mx-auto leading-relaxed">
+          Khám phá bộ sưu tập đa dạng các sản phẩm chất lượng cao dành cho thú cưng của bạn
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Section -->
+  <section class="py-8 bg-white shadow-md sticky top-16 z-40 backdrop-blur-lg bg-white/90">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap items-center justify-between gap-6">
+        <!-- Categories -->
+        <div class="flex items-center space-x-4">
+          <span class="text-gray-600 font-medium">Danh mục:</span>
+          <div class="relative">
+            <select class="appearance-none px-6 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300">
+              <option value="">Tất cả sản phẩm</option>
+              <option value="food">Thức ăn</option>
+              <option value="toys">Đồ chơi</option>
+              <option value="accessories">Phụ kiện</option>
+              <option value="clothing">Quần áo</option>
+            </select>
+            <div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+              <i class="fas fa-chevron-down text-gray-400"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sort -->
+        <div class="flex items-center space-x-4">
+          <span class="text-gray-600 font-medium">Sắp xếp theo:</span>
+          <div class="relative">
+            <select class="appearance-none px-6 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300">
+              <option value="popular">Phổ biến nhất</option>
+              <option value="newest">Mới nhất</option>
+              <option value="price-low">Giá thấp đến cao</option>
+              <option value="price-high">Giá cao đến thấp</option>
+            </select>
+            <div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+              <i class="fas fa-chevron-down text-gray-400"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Product Card -->
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+          <a href="product-details.html" class="block">
+            <div class="relative overflow-hidden">
+              <img src="https://images.pexels.com/photos/4587998/pexels-photo-4587998.jpeg" alt="Áo Len Ấm Áp Cho Chó" 
+                class="w-full h-64 object-cover transform transition-transform duration-300 group-hover:scale-110" />
+              <div class="absolute top-2 right-2">
+                <button class="p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors">
+                  <i class="far fa-heart text-gray-600"></i>
+                </button>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p class="text-white text-sm">Giữ ấm cho thú cưng của bạn trong những ngày lạnh</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold mb-2">Áo Len Ấm Áp Cho Chó</h3>
+              <div class="flex items-center mb-4">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-sm text-gray-500 ml-2">(24)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-xl font-bold text-gradient">599.000₫</span>
+                <button class="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                  Thêm vào giỏ
+                </button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product Card -->
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+          <a href="product-details.html" class="block">
+            <div class="relative overflow-hidden">
+              <img src="https://images.pexels.com/photos/4588435/pexels-photo-4588435.jpeg" alt="Áo Mưa Chống Thấm" 
+                class="w-full h-64 object-cover transform transition-transform duration-300 group-hover:scale-110" />
+              <div class="absolute top-2 right-2">
+                <button class="p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors">
+                  <i class="far fa-heart text-gray-600"></i>
+                </button>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p class="text-white text-sm">Bảo vệ thú cưng của bạn khỏi mưa</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold mb-2">Áo Mưa Chống Thấm</h3>
+              <div class="flex items-center mb-4">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="text-sm text-gray-500 ml-2">(18)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-xl font-bold text-gradient">699.000₫</span>
+                  <span class="text-sm text-gray-500 line-through ml-2">799.000₫</span>
+                </div>
+                <button class="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                  Thêm vào giỏ
+                </button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product Card -->
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+          <a href="product-details.html" class="block">
+            <div class="relative overflow-hidden">
+              <img src="https://images.pexels.com/photos/4587971/pexels-photo-4587971.jpeg" alt="Vòng Cổ Da" 
+                class="w-full h-64 object-cover transform transition-transform duration-300 group-hover:scale-110" />
+              <div class="absolute top-2 right-2">
+                <button class="p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors">
+                  <i class="far fa-heart text-gray-600"></i>
+                </button>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p class="text-white text-sm">Vòng cổ da cao cấp, bền đẹp</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold mb-2">Vòng Cổ Da</h3>
+              <div class="flex items-center mb-4">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="text-sm text-gray-500 ml-2">(32)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-xl font-bold text-gradient">299.000₫</span>
+                <button class="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                  Thêm vào giỏ
+                </button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product Card -->
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+          <a href="product-details.html" class="block">
+            <div class="relative overflow-hidden">
+              <img src="https://images.pexels.com/photos/4588026/pexels-photo-4588026.jpeg" alt="Đồ Chơi Cao Su" 
+                class="w-full h-64 object-cover transform transition-transform duration-300 group-hover:scale-110" />
+              <div class="absolute top-2 right-2">
+                <button class="p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors">
+                  <i class="far fa-heart text-gray-600"></i>
+                </button>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p class="text-white text-sm">An toàn và bền bỉ cho thú cưng</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold mb-2">Đồ Chơi Cao Su</h3>
+              <div class="flex items-center mb-4">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="text-sm text-gray-500 ml-2">(15)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-xl font-bold text-gradient">159.000₫</span>
+                <button class="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                  Thêm vào giỏ
+                </button>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="mt-12 flex justify-center">
+        <nav class="flex items-center space-x-2">
+          <button class="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
+            <i class="fas fa-chevron-left text-gray-600"></i>
+          </button>
+          <button class="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white">1</button>
+          <button class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">2</button>
+          <button class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">3</button>
+          <button class="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
+            <i class="fas fa-chevron-right text-gray-600"></i>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-black"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-white">
+        <div class="md:col-span-2">
+          <div class="flex items-center mb-6">
+            <img src="https://img.upanh.tv/2025/06/08/hihihi.png" alt="FurryFriends Logo" class="h-12 mr-3">
+            <span class="text-2xl font-bold text-gradient">FurryFriends</span>
+          </div>
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            Chúng tôi cam kết mang đến những sản phẩm chất lượng cao nhất cho thú cưng của bạn. 
+            Với nhiều năm kinh nghiệm, FurryFriends là lựa chọn tin cậy của hàng nghìn gia đình.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors hover:scale-110 transform">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors hover:scale-110 transform">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors hover:scale-110 transform">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors hover:scale-110 transform">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-bold mb-6 text-gradient">Liên Kết Nhanh</h3>
+          <ul class="space-y-3">
+            <li><a href="../index.html" class="text-gray-300 hover:text-white transition-colors hover:translate-x-2 transform inline-block">Trang Chủ</a></li>
+            <li><a href="products-new.html" class="text-gray-300 hover:text-white transition-colors hover:translate-x-2 transform inline-block">Danh Mục</a></li>
+            <li><a href="products-new.html" class="text-gray-300 hover:text-white transition-colors hover:translate-x-2 transform inline-block">Sản Phẩm</a></li>
+            <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors hover:translate-x-2 transform inline-block">Giới Thiệu</a></li>
+            <li><a href="contact.html" class="text-gray-300 hover:text-white transition-colors hover:translate-x-2 transform inline-block">Liên Hệ</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-bold mb-6 text-gradient">Liên Hệ</h3>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <i class="fas fa-phone w-5 h-5 mr-3 text-purple-400"></i>
+              <span class="text-gray-300">+84-34984089</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-envelope w-5 h-5 mr-3 text-purple-400"></i>
+              <span class="text-gray-300">furryfriends@gmail.com</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-map-marker-alt w-5 h-5 mr-3 text-purple-400"></i>
+              <span class="text-gray-300">Hà Nội, Việt Nam</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+        <p class="text-gray-400">
+          © 2024 <span class="text-gradient font-semibold">FurryFriends</span>. Tất cả quyền được bảo lưu.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom JavaScript -->
+  <script src="/js/main.js"></script>
+</body>
+</html>
